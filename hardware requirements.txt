@@ -1,0 +1,11 @@
+1) Arduino uno 
+2) two ultrasonic sensors
+3) neo6m gps receiver 
+4) sim 800l gsm module
+5) simcard
+6) 2 Ampire 3.7 volts lithium ion cells
+7) jumper cables
+8) 3.7V to 5V step up circuit for power supply
+9) buzzer 
+10) switches
+

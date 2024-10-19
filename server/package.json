@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js", 
+    "start": "node app.js",
     "test": "node app.js"
   },
   "author": "Oswin Alex",
@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "helmet": "^8.0.0",
     "mongoose": "^8.7.2"
   }
 }

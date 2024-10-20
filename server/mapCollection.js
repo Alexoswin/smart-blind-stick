@@ -27,10 +27,10 @@ const mapdata = new mongoose.Schema({
      id:{
         type: Number,
         required : true,
-        unique: true
+         unique : false
      }
 })
 
-const location = mongoose.model("location", mapdata);
-module.exports= location;
+const locations = mongoose.model("locations", mapdata);
+module.exports= locations;
 

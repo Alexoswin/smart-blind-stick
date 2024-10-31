@@ -16,6 +16,7 @@ const customIcon = new L.Icon({
 function App() {
   const [locationData, setLocationData] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [lastLocation, setLastLocation] = useState(null);
 
   useEffect(() => {
     // Connect to the WebSocket server
@@ -31,7 +32,11 @@ function App() {
       console.log('Received location data:', data);
 
       // Update state with the latest location data
-      setLocationData((prevData) => [...prevData, data.data]);
+      const newLocation = data.data;
+      setLocationData((prevData) => [...prevData, newLocation]);
+      
+      // Update last known location
+      setLastLocation(newLocation);
     };
 
     socket.onclose = () => {
@@ -57,6 +62,7 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
+        {/* Display markers for received location data */}
         {locationData.map((location, index) => (
           <Marker
             key={index}
@@ -70,6 +76,21 @@ function App() {
             </Popup>
           </Marker>
         ))}
+
+        {/* Display the last known location if data is not updated */}
+        {lastLocation && (
+          <Marker
+            position={[lastLocation.lat, lastLocation.long]}
+            icon={customIcon}
+          >
+            <Popup>
+              <p><strong>ID:</strong> {lastLocation.id}</p>
+              <p><strong>Latitude:</strong> {lastLocation.lat}</p>
+              <p><strong>Longitude:</strong> {lastLocation.long}</p>
+              <p><em>(Last known location)</em></p>
+            </Popup>
+          </Marker>
+        )}
       </MapContainer>
     </div>
   );
